@@ -16,16 +16,16 @@ class Personal extends Component{
     }
 
     edit=()=>{
-        this.setState(prevState=>({
-            edit:!prevState.edit,
-        }))
+        this.setState({
+            edit:true,
+        })
         
     }
-    onChange=(e)=>{
+    onSubmit=(e)=>{
         e.preventDefault()
-        this.setState(prevState=>({
-            edit:!prevState.edit
-        }))
+        this.setState({
+            edit:false,
+        })
     }
     handleChange=(e)=>{
         this.setState({
@@ -41,13 +41,13 @@ class Personal extends Component{
         const {edit,personal}=this.state;
         return(
             <div>
-                <h1>{edit ?
-                <form onSubmit={this.onChange}>
+                <span onClick={this.edit}>{edit ?
+                <form onSubmit={this.onSubmit}>
                     <input onChange={this.handleChange} type='text'></input>
+                    <button type="submit">Ok</button>
                 </form>
                 :personal.name}
-                </h1>
-                <button onClick={this.edit}>Edit</button>
+                </span>
             </div>
         )
     }
