@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import formAppear from './Form';
+import Education from './Education';
 
 class Personal extends Component{
     constructor()
@@ -10,6 +10,14 @@ class Personal extends Component{
                 name:['Full Name',false],
                 email:['example@gmail.com',false],
                 phone:['9863490421',false],
+            },
+            education:{
+                university:['Cool University',false],
+                city:['Kathmandu,Nepal',false],
+                degree:['Bachelors',false],
+                subject:['BSc Computer Science',false],
+                from:['2020',false],
+                to:['2025',false],
             }
         };
         this.edit=this.edit.bind(this)
@@ -18,28 +26,31 @@ class Personal extends Component{
 
     }
 
-    edit=(key)=>{
+    //Changes edit to true such that input form appeared for the user to enter the data
+    edit=(state,key)=>{
         this.setState(prevState=>({
-            personal:{
-                ...prevState.personal,
-                [key]:[prevState.personal[key][0],true],
+            [state]:{
+                ...prevState[state],
+                [key]:[prevState[state][key][0],true],
             }
         }))
     }
-    onSubmit=(e,key)=>{
+    //when submitted edit toggled to false such that personal info shown instead of the input form
+    onSubmit=(e,state,key)=>{
         e.preventDefault()
         this.setState(prevState=>({
-            personal:{
-                ...prevState.personal,
-                [key]:[prevState.personal[key][0],false],
+            [state]:{
+                ...prevState[state],
+                [key]:[prevState[state][key][0],false],
             }
         }))
     }
-    handleChange=(e,key)=>{
+    //Updates input based on input by the user on input tag
+    handleChange=(e,state,key)=>{
         this.setState(prevState=>({
-            personal:{
-                ...prevState.personal,
-                [key]:[e.target.value,prevState.personal[key][1]],
+            [state]:{
+                ...prevState[state],
+                [key]:[e.target.value,prevState[state][key][1]],
             }
         }))
     }
@@ -47,35 +58,39 @@ class Personal extends Component{
     render()
     {
         //Destructuring state
-        const {personal}=this.state;
+        const {personal,education}=this.state;
         return(
             <div>
                 {/* For Name */}
-                <span onClick={()=>this.edit('name')}>{personal.name[1] ?
-                <form onSubmit={(e)=>this.onSubmit(e,'name')}>
-                    <input onChange={(e)=>this.handleChange(e,'name')} type='text'></input>
+                <span onClick={()=>this.edit('personal','name')}>{personal.name[1] ?
+                <form onSubmit={(e)=>this.onSubmit(e,'personal','name')}>
+                    <input onChange={(e)=>this.handleChange(e,'personal','name')} type='text'></input>
                     <button type="submit">Ok</button>
                 </form>
                 :personal.name[0]}
                 </span>
                 <br></br>
+                {/*  */}
+                <h2>Personal Info</h2>
+                <br></br>
                 {/* For email */}
-                <span onClick={()=>this.edit('email')}>{personal.email[1] ?
-                <form onSubmit={(e)=>this.onSubmit(e,'email')}>
-                    <input onChange={(e)=>this.handleChange(e,'email')} type='text'></input>
+                <span onClick={()=>this.edit('personal','email')}>{personal.email[1] ?
+                <form onSubmit={(e)=>this.onSubmit(e,'personal','email')}>
+                    <input onChange={(e)=>this.handleChange(e,'personal','email')} type='text'></input>
                     <button type="submit">Ok</button>
                 </form>
                 :personal.email[0]}
                 </span>
                 <br></br>
                 {/* For phone */}
-                <span onClick={()=>this.edit('phone')}>{personal.phone[1] ?
-                <form onSubmit={(e)=>this.onSubmit(e,'phone')}>
-                    <input onChange={(e)=>this.handleChange(e,'phone')} type='text'></input>
+                <span onClick={()=>this.edit('personal','phone')}>{personal.phone[1] ?
+                <form onSubmit={(e)=>this.onSubmit(e,'personal','phone')}>
+                    <input onChange={(e)=>this.handleChange(e,'personal','phone')} type='text'></input>
                     <button type="submit">Ok</button>
                 </form>
                 :personal.phone[0]}
                 </span>
+                <Education education={education} edit={this.edit} handleChange={this.handleChange} onSubmit={this.onSubmit}></Education>
             </div>
         )
     }
