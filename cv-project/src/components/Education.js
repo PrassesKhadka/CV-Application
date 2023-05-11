@@ -15,7 +15,7 @@ class Education extends Component
                 <h2>Education</h2>
                 {/* edit function is a prop here from Personal Component */}
                 {/* edit function changes the university[1]=true such that Form/Input will be shown for user to input */}
-                {/* Uniiversity secion */}
+                {/* University section */}
                 <span onClick={()=>edit('education','university')}>
                     {education.university[1]
                     ?

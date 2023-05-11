@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import Education from './Education';
+import Experience from './Experience';
 
 class Personal extends Component{
     constructor()
@@ -18,7 +19,15 @@ class Personal extends Component{
                 subject:['BSc Computer Science',false],
                 from:['2020',false],
                 to:['2025',false],
-            }
+            },
+            experience:{
+                company:['Adventure tech',false],
+                position:['Sr.Web Developer',false],
+                location:['Thamel,Kathmandu',false],
+                from:['2018',false],
+                to:['',false],
+                responsibility:['',false],
+            },
         };
         this.edit=this.edit.bind(this)
         this.onSubmit=this.onSubmit.bind(this)
@@ -58,7 +67,7 @@ class Personal extends Component{
     render()
     {
         //Destructuring state
-        const {personal,education}=this.state;
+        const {personal,education,experience}=this.state;
         return(
             <div>
                 {/* For Name */}
@@ -91,6 +100,7 @@ class Personal extends Component{
                 :personal.phone[0]}
                 </span>
                 <Education education={education} edit={this.edit} handleChange={this.handleChange} onSubmit={this.onSubmit}></Education>
+                <Experience experience={experience} edit={this.edit} handleChange={this.handleChange} onSubmit={this.onSubmit}></Experience>
             </div>
         )
     }

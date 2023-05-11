@@ -1,0 +1,34 @@
+*
+{
+    box-sizing: border-box;
+    border:0;
+    margin:0;
+    outline:0;
+    padding:0;
+}
+
+.container
+{
+    position:absolute;
+    inset:5%;
+    border:1px solid black;
+    padding:25px;
+}
+
+.center
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+}
+
+.background-black
+{
+    background-color: black;
+    color:white;
+}
+.background-blue
+{
+    background-color: lightcyan;
+}
