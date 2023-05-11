@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Skill=()=>{
+const Skills=()=>{
 
 }
-export default Skill;
+export default Skills;
